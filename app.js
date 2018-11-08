@@ -9,17 +9,15 @@ login({email: process.env.FB_EMAIL, password: process.env.FB_PASSWORD }, (err, a
   // TODO: require('body-parser')
 
   api.listen((err, message) => {
-    let msg = message.body
-    console.log(msg);
-    console.log(msg.indexOf)
+    const msg = message.body
 
-    // if(msg.startswith('/echo')){
-    if(0) {
+    if(msg.indexOf('/echo') == 0){
       api.sendMessage(msg.substring(7, msg.length), message.threadID)
     }
 
     else if(msg.indexOf('!pravin') == 0) {
       let reply = {
+        body: msg.substring(7, msg.length),
         attachment: fs.createReadStream(__dirname + '/pravin.jpg')
       }
       api.sendMessage(reply, message.threadID);
