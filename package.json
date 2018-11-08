@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^6.0.0",
-    "facebook-chat-api": "^1.6.0"
+    "facebook-chat-api": "^1.6.0",
+    "fs": "0.0.1-security",
+    "robinhood": "^1.5.1"
   }
 }
