@@ -12,10 +12,10 @@ login({email: process.env.FB_EMAIL, password: process.env.FB_PASSWORD }, (err, a
     const msg = message.body
 
     if(msg.indexOf('/echo') == 0){
-      api.sendMessage(msg.substring(7, msg.length), message.threadID)
+      api.sendMessage(msg.substring(6, msg.length), message.threadID)
     }
 
-    else if(msg.indexOf('!pravin') == 0) {
+    else if(msg.indexOf('/pravin') == 0) {
       let reply = {
         body: msg.substring(7, msg.length),
         attachment: fs.createReadStream(__dirname + '/pravin.jpg')
