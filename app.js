@@ -1,12 +1,30 @@
 require('dotenv').config()
 const login = require('facebook-chat-api')
 const fs = require('fs')
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
 
 login({email: process.env.FB_EMAIL, password: process.env.FB_PASSWORD }, (err, api) => {
-  if(err) return console.error(err);
-
-  // TODO: require('body-parser')
+  if(err) {
+  	switch (err.error) {
+		case 'login-approval':
+			console.log('enter 2fa code:');
+			rl.on('line', (line) => {
+				err.continue(line);
+				rl.close();
+			});
+			break;
+		default:
+			console.log(err);
+		}
+	return;
+  }
+  
 
   api.listen((err, message) => {
     const msg = message.body
